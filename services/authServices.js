@@ -7,19 +7,14 @@ export const authService = {
     async login(email, password) {
         let response = await fetch(loginUrl, {
             method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
             body: JSON.stringify({
                 email,
                 password
             })
         });
 
-        if(response.status != 200) return;
-        
         let data = await response.json();
-
+        
         localStorage.setItem('auth', JSON.stringify(data));
         
         return data;

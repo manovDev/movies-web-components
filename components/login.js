@@ -2,7 +2,7 @@ import {html, render} from 'https://unpkg.com/lit-html?module';
 import {authService} from '../services/authServices.js';
 
 const template = (ctx) => html`
-    <form class="text-center border border-light p-5" action="#" method="post" @submit="${ctx.onSubmit}">
+    <form class="text-center border border-light p-5" action="" method="" @submit=${ctx.onSubmit}>
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" placeholder="Email" name="email" value="">
@@ -11,17 +11,12 @@ const template = (ctx) => html`
             <label for="password">Password</label>
             <input type="password" class="form-control" placeholder="Password" name="password" value="">
         </div>
-    
-        <div class="form-group">
-            <label for="repeatPassword">Repeat Password</label>
-            <input type="password" class="form-control" placeholder="Repeat-Password" name="rePassword" value="">
-        </div>
-    
-        <button type="submit" class="btn btn-primary">Register</button>
+
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
 `;
 
-class Register extends HTMLElement {
+class Login extends HTMLElement {
     constructor() {
         super();
     }
@@ -37,27 +32,18 @@ class Register extends HTMLElement {
 
         let email = formData.get('email');
         let password = formData.get('password');
-        let rePassword = formData.get('rePassword');
-        
-        if(password.length < 6) {
-            notify('Password is too short!', 'error');
-            return;
-        }
 
-        if(password != rePassword) {
-            notify('Passwords must match!', 'error');
-            return;
-        }
-
-        authService.register(email, password, rePassword)
+        authService.login(email, password)
             .then(res => {
-                notify('Successful registration!', 'success');
+                
+                notify('Logged in!', 'success');
                 //TODO: Redirect to tome ('/')
             })
             .catch(e => {
                 notify(e.message, 'error');
             });
 
+        
     }
 
     render() {
@@ -66,4 +52,4 @@ class Register extends HTMLElement {
 
 };
 
-export default Register;
+export default Login;
