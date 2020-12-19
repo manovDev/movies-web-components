@@ -1,11 +1,59 @@
+import {html, render} from 'https://unpkg.com/lit-html?module';
+
+const template = (ctx) => html`
+    <form class="text-center border border-light p-5" action="#" method="post" @submit="${ctx.onSubmit}">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" placeholder="Email" name="email" value="">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" placeholder="Password" name="password" value="">
+        </div>
+    
+        <div class="form-group">
+            <label for="repeatPassword">Repeat Password</label>
+            <input type="password" class="form-control" placeholder="Repeat-Password" name="rePassword" value="">
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+`;
+
 class Register extends HTMLElement {
     constructor() {
         super();
     }
 
     connectedCallback() {
-        this.innerHTML = 'In Register Component';
+        this.render();
     }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        let formData = new FormData(e.target);
+
+        let email = formData.get('email');
+        let password = formData.get('password');
+        let rePassword = formData.get('rePassword');
+        
+        if(password.length < 6) {
+            return;
+        }
+
+        if(password != rePassword) {
+            return;
+        }
+
+        console.log(email, password, rePassword);
+        
+    }
+
+    render() {
+        render(template(this), this, {eventContext: this})
+    }
+
 };
 
 export default Register;
