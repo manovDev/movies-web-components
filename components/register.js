@@ -1,4 +1,5 @@
 import {html, render} from 'https://unpkg.com/lit-html?module';
+import {authService} from '../services/authServices.js';
 
 const template = (ctx) => html`
     <form class="text-center border border-light p-5" action="#" method="post" @submit="${ctx.onSubmit}">
@@ -48,9 +49,15 @@ class Register extends HTMLElement {
             return;
         }
 
-        notify('Successful registration!', 'success');
+        authService.register(email, password, rePassword)
+            .then(res => {
+                notify('Successful registration!', 'success');
+            })
+            .catch(e => {
+                notify(e.message, 'error');
+            });
 
-        console.log(email, password, rePassword);
+        console.log(authService.register);
         
     }
 
