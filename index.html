@@ -33,7 +33,7 @@
         </nav>
 
         <div id="root"></div>
-        <!-- 
+        
         <section class="notifications" style="display: none;">
             <p class="notification-message" id="errorBox">Message...</p>
         </section>
@@ -43,7 +43,7 @@
         
 
         
-        
+        <!--  
         <h1 class="text-center">Movies</h1>
         <section>
             <a href="#" class="btn btn-warning ">Add Movie</a>
@@ -170,6 +170,30 @@
             </div>
         </footer>
     </div>
+    <script>
+        function notify(msg, type = 'success') {
+            let successBox = document.getElementById('successBox');
+            let errorBox = document.getElementById('errorBox');
+            let notificationEl;
 
+            switch (type) {
+                case 'success':
+                    notificationEl = document.getElementById('successBox');
+                    break;
+                case 'error':
+                    notificationEl = document.getElementById('errorBox');
+                    break;
+                default:
+                    break;
+            }
+
+            notificationEl.innerText = msg;
+            notificationEl.parentElement.style.display = 'block';
+
+            setTimeout(() => {
+                notificationEl.parentElement.style.display = 'none';
+            }, 3000);
+        } 
+    </script>
 </body>
 </html>

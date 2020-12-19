@@ -39,12 +39,16 @@ class Register extends HTMLElement {
         let rePassword = formData.get('rePassword');
         
         if(password.length < 6) {
+            notify('Password is too short!', 'error');
             return;
         }
 
         if(password != rePassword) {
+            notify('Passwords must match!', 'error');
             return;
         }
+
+        notify('Successful registration!', 'success');
 
         console.log(email, password, rePassword);
         
