@@ -1,3 +1,6 @@
+import {Router} from 'https://unpkg.com/@vaadin/router';
+
+
 import {html, render} from 'https://unpkg.com/lit-html?module';
 import {authService} from '../services/authServices.js';
 
@@ -52,7 +55,7 @@ class Register extends HTMLElement {
         authService.register(email, password, rePassword)
             .then(res => {
                 notify('Successful registration!', 'success');
-                //TODO: Redirect to tome ('/')
+                Router.go('/login');
             })
             .catch(e => {
                 notify(e.message, 'error');

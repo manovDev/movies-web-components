@@ -1,7 +1,6 @@
 const apiKey = 'AIzaSyCYTcQtSEWkPl2cx_8hKuxLxCOElUSxk5Q';
 const loginUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
 const registerUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
-const baseUrl = 'https://movies-components-default-rtdb.firebaseio.com/';
 
 export const authService = {
     async login(email, password) {
