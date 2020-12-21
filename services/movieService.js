@@ -1,3 +1,5 @@
+import {authService} from '../services/authServices.js';
+
 const baseUrl = 'https://movies-components-default-rtdb.firebaseio.com/';
 
 export const movieService = {
@@ -31,9 +33,9 @@ export const movieService = {
         let data = await res.json();
         
         return {
-            isCreator: Boolean(data.creator == authService.getData().email),
-            isLiked: Boolean(data.likes.includes(authService.getData().email)),
-            likesQtty: data.likes.length,
+            // isCreator: Boolean(data.creator == authService.getData().email),
+            // isLiked: Boolean(data.likes.includes(authService.getData().email)),
+            // likesQtty: data.likes.length,
             key: id,
             ...data
         };
